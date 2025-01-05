@@ -33,7 +33,7 @@ SECTIONS {
     *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.text*)))
   } > XIP
 
-  .rodata : AT(ALIGN(ADDR(.rodata)+0x2000,16)) {
+  .rodata : AT(ADDR(.rodata) + 0x2000) {
     *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.rodata*)))
     *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.srodata*))) 
   } > XIP

@@ -11,32 +11,17 @@ MEMORY {
 } 
 
 SECTIONS {
-  /*.header 0x22009000 : AT(0x23000000) {
-    KEEP(*(.header))
-    . = ALIGN(4);
-  }
-
-  .text 0x23000000 : AT(0x23002000) {
+  .text ORIGIN(0x23000000) : AT(0x23002000) {
     KEEP(*(.text.start))
     *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.text*)))
     *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.rodata*)))
     *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.srodata*))) 
-  }*/
-
-  .header 0x22009000 : AT(0x23000000) {
-    KEEP(*(.header))
-    . = ALIGN(4);
   }
 
-  .text : AT(ALIGN(ADDR(.text)+0x2000,16)) {
-    KEEP(*(.text.start))
-    *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.text*)))
-  } > XIP
-
-  .rodata : AT(ALIGN(ADDR(.rodata)+0x2000,16)) {
+  /*.rodata 0x23001000 : AT(0x23003000) {
     *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.rodata*)))
     *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.srodata*))) 
-  } > XIP
+  } > XIP*/
 
   .data : ALIGN(16) {
     __data_flash = LOADADDR(.data);
